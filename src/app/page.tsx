@@ -6,7 +6,7 @@ import {
   PiCalendarBlank,
   PiHash,
   PiShareFatBold,
-  PiXBold
+  PiXBold,
 } from "react-icons/pi";
 import Avatar from "~/components/Avatar";
 import FlagButton from "~/components/FlagButton";
@@ -66,6 +66,7 @@ export default async function HomePage({
       tag: tags,
     })
     .from(posts)
+    .where(eq(posts.archived, false))
     .leftJoin(queriedTagRelations, eq(queriedTagRelations.postId, posts.id))
     .leftJoin(queriedTags, eq(queriedTags.id, queriedTagRelations.tagId))
     .groupBy(posts.id, tags.id)

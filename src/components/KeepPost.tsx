@@ -11,7 +11,7 @@ export default function KeepPost({ postId, userId }: KeepPostProps) {
     if (kept) return;
 
     const res = await fetch(`/api/removeFlag/`, {
-      method: "REMOVE",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -22,7 +22,9 @@ export default function KeepPost({ postId, userId }: KeepPostProps) {
       setKept(true);
     }
   };
-
+  // TODO: Add overlay feature when keepPost button is clicked
+  // same logic should be implemented when keepPost, archivePost, or removePost is clicked
+  // overlay is added by wrapping the post component with a div that has position relative
   return (
     <button
       onClick={handleKeep}
